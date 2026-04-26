@@ -1,2 +1,16 @@
-// eslint.config.mjs - minimal config for deployment
-// Next.js will use default eslint settings
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals.js"),
+];
+
+export default eslintConfig;
